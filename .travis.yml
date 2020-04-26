@@ -29,7 +29,7 @@ deploy:
   app: tama
   env: Tama-env-1
   bucket_name: elasticbeanstalk-ap-northeast-1-475625490253
-  bucket_path: tama
+  bucket_path: tamastudy
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
