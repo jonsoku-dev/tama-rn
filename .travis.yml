@@ -27,7 +27,7 @@ deploy:
   provider: elasticbeanstalk
   region: ap-northeast-1
   app: tama
-  env: Tama-env
+  env: Tama-env-1
   bucket_name: elasticbeanstalk-ap-northeast-1-475625490253
   bucket_path: tama
   on:
