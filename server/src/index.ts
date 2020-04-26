@@ -20,7 +20,6 @@ const limiter = rateLimit({
   max: 100000,
 });
 const corsOption = { origin: 'http://localhost:3000' };
-
 // 미들웨어
 app.use(
   helmet(),
