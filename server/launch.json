@@ -1,0 +1,10 @@
+{
+  "type": "node",
+  "request": "attach",
+  "name": "Docker node",
+  "address": "localhost",
+  "port": 9229,
+  "localRoot": "${workspaceFolder}",
+  "remoteRoot": "/app",
+  "protocol": "inspector"
+}

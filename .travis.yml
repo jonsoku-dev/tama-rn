@@ -1,0 +1,36 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t the2792/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true the2792/react-test npm test
+
+after_success:
+  - docker build -t the2792/tama-client ./client
+  - docker build -t the2792/tama-nginx ./nginx
+  - docker build -t the2792/tama-server ./server
+
+  # 트라비스에 로그인
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # docker hub에 push
+  - docker push the2792/tama-client
+  - docker push the2792/tama-nginx
+  - docker push the2792/tama-server
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: ap-northeast-1
+  app: tama
+  env: Tama-env
+  bucket_name: elasticbeanstalk-ap-northeast-1-475625490253
+  bucket_path: tama
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

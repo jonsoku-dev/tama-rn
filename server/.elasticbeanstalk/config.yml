@@ -1,0 +1,2 @@
+deploy:
+  artifact: dist/server.zip
